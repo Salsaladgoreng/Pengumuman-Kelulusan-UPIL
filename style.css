@@ -1,3 +1,4 @@
+/* JANGAN ADA YANG DIUBAH DISINI */
 * {
     margin: 0;
     padding: 0;
@@ -20,8 +21,6 @@ body.page-body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Header */
-/* Header Container */
 .site-header {
     background-color: #0f2c59;
     color: #ffffff;
@@ -40,25 +39,23 @@ body.page-body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap; /* Mencegah isi header turun ke bawah */
+    flex-wrap: nowrap; 
 }
 
 .header-brand {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    flex-wrap: nowrap; /* Mencegah logo dan teks terpisah ke baris baru */
+    flex-wrap: nowrap; 
 }
 
-/* Pastikan ukuran gambar logo terkunci */
 .header-brand img {
     width: 40px;
     height: 40px;
-    min-width: 40px; /* Mencegah logo mengecil atau merusak layout */
+    min-width: 40px;
     object-fit: contain;
 }
 
-/* Card */
 .card {
     background-color: #ffffff;
     border-radius: 1rem;
@@ -120,7 +117,6 @@ body.page-body {
     }
 }
 
-/* Timer Grid */
 .timer-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -174,7 +170,6 @@ body.page-body {
     }
 }
 
-/* Status Banner */
 .status-banner {
     background-color: #fffbeb;
     border: 1px solid #fde68a;
@@ -197,7 +192,6 @@ body.page-body {
     color: #d97706;
 }
 
-/* Form Section */
 .form-header {
     border-bottom: 1px solid #e5e7eb;
     padding-bottom: 1rem;
@@ -284,7 +278,6 @@ body.page-body {
     background-color: #ffffff;
 }
 
-/* Submit Button */
 .submit-button {
     width: 100%;
     background-color: #9ca3af;
@@ -314,7 +307,6 @@ body.page-body {
     display: none !important;
 }
 
-/* Footer */
 .site-footer {
     background-color: #0f2c59;
     color: #ffffff;
