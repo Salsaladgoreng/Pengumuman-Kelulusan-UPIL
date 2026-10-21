@@ -1,4 +1,3 @@
-/* JANGAN ADA YANG DIUBAH DISINI */
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +18,24 @@ body.page-body {
     justify-content: space-between;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+h1, h2 {
+    color: #ffffff; 
+    margin-bottom: 8px;
+    letter-spacing: 0px;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .site-header {
@@ -56,6 +73,49 @@ body.page-body {
     object-fit: contain;
 }
 
+.logo-img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    margin-bottom: 10px;
+    background-color: #0f172a;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-tab-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-tab-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.nav-tab-btn.active {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border-color: #38bdf8;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
 .card {
     background-color: #ffffff;
     border-radius: 1rem;
@@ -65,16 +125,6 @@ body.page-body {
     border: 1px solid #e5e7eb;
     position: relative;
     overflow: hidden;
-}
-
-@media (min-width: 768px) {
-    .card {
-        padding: 2rem;
-    }
-}
-
-.countdown-card {
-    text-align: center;
 }
 
 .card-bg-circle {
@@ -111,10 +161,8 @@ body.page-body {
     margin-bottom: 0.5rem;
 }
 
-@media (min-width: 768px) {
-    .section-title {
-        font-size: 1.875rem;
-    }
+.countdown-card {
+    text-align: center;
 }
 
 .timer-grid {
@@ -125,12 +173,6 @@ body.page-body {
     margin: 0 auto 1.5rem auto;
 }
 
-@media (min-width: 768px) {
-    .timer-grid {
-        gap: 1rem;
-    }
-}
-
 .timer-box {
     background-color: #0f2c59;
     color: #ffffff;
@@ -139,22 +181,10 @@ body.page-body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-@media (min-width: 768px) {
-    .timer-box {
-        padding: 1rem;
-    }
-}
-
 .timer-number {
     display: block;
     font-size: 1.5rem;
     font-weight: 900;
-}
-
-@media (min-width: 768px) {
-    .timer-number {
-        font-size: 2.25rem;
-    }
 }
 
 .timer-label {
@@ -162,12 +192,6 @@ body.page-body {
     letter-spacing: 0.05em;
     text-transform: uppercase;
     opacity: 0.8;
-}
-
-@media (min-width: 768px) {
-    .timer-label {
-        font-size: 0.75rem;
-    }
 }
 
 .status-banner {
@@ -181,16 +205,11 @@ body.page-body {
     align-items: center;
 }
 
-@media (min-width: 768px) {
-    .status-banner {
-        font-size: 0.875rem;
-    }
-}
-
 .status-icon {
     margin-right: 0.5rem;
     color: #d97706;
 }
+
 
 .form-header {
     border-bottom: 1px solid #e5e7eb;
@@ -222,12 +241,6 @@ body.page-body {
     grid-template-columns: 1fr;
     gap: 1rem;
     margin-bottom: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .form-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
 
 .form-group {
@@ -303,8 +316,114 @@ body.page-body {
     margin-right: 0.5rem;
 }
 
-.hidden {
-    display: none !important;
+/* ==========================================
+   6. CHARACTER SLIDER & MEDIA (DENGAN LATAR BATIK)
+   ========================================== */
+#tab-karakter {
+    background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.92)), 
+                url('batik.png') repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 20px;
+    border-radius: 1rem;
+    color: #ffffff;
+}
+
+#tab-karakter .card {
+    background-color: rgba(15, 23, 42, 0.85);
+    border: 1px solid #38bdf8;
+    color: #ffffff;
+}
+
+#tab-karakter .section-title {
+    color: #38bdf8;
+}
+
+.character-section {
+    text-align: center;
+}
+
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.character-image-box {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #38bdf8;
+    background-color: #0b0f19;
+}
+
+.slide-img {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-img.active {
+    display: block;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(15, 23, 42, 0.8);
+    color: #38bdf8;
+    border: 2px solid #38bdf8;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #1e3a8a;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.story-box {
+    background-color: rgba(30, 41, 59, 0.6);
+    border-left: 5px solid #38bdf8;
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    text-align: justify;
 }
 
 .site-footer {
@@ -328,4 +447,56 @@ body.page-body {
     margin-top: 1rem;
     font-size: 0.625rem;
     color: #9ca3af;
+}
+
+@media (min-width: 768px) {
+    .card {
+        padding: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.875rem;
+    }
+
+    .timer-grid {
+        gap: 1rem;
+    }
+
+    .timer-box {
+        padding: 1rem;
+    }
+
+    .timer-number {
+        font-size: 2.25rem;
+    }
+
+    .timer-label {
+        font-size: 0.75rem;
+    }
+
+    .status-banner {
+        font-size: 0.875rem;
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    .nav-menu {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .character-image-box {
+        height: 180px;
+    }
 }
