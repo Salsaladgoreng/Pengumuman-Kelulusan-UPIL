@@ -1,10 +1,14 @@
+//UBAH DATA DI SINI
 const databaseKelulusan = {
     "640141004": { lulus: true, nama: "Saikou Yutta" },
     "640141005": { lulus: false, nama: "belute" },
 };
 
-const targetDate = new Date("June 07, 2026 10:00:00").getTime();
+//UBAH TANGGAL SISA WAKTU DI SINI (Format: "Bulan Tanggal, Tahun Jam:Menit:Detik")
+const targetDate = new Date("November 07, 2026 10:00:00").getTime();
 
+
+//JANGAN ADA YANG DIUBAH DISINI
 const countdownInterval = setInterval(function() {
     const now = new Date().getTime();
     const distance = targetDate - now;
@@ -79,7 +83,7 @@ function handleFormSubmit(event) {
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <span class="badge-pill" style="background-color: #fef3c7; color: #b45309;">DATA TIDAK DITEMUKAN / INVALID</span>
-                <h3 class="section-title" style="margin-top: 0.75rem;">Nomor Tidak Terdaftar</h3>
+                <h3 class="section-title" style="margin-top: 0.75rem;">NIM Tidak Terdaftar</h3>
                 <p style="font-size: 0.875rem; color: #4b5563; margin-bottom: 1.5rem;">Nomor Induk Mahasiswa <strong>${regNumber}</strong> tidak ditemukan di sistem. Periksa kembali inputan Anda.</p>
                 <button onclick="location.reload()" class="submit-button" style="width: auto; display: inline-flex; margin: 0 auto; background-color: #0f2c59; cursor: pointer;">
                     Coba Lagi
@@ -102,16 +106,12 @@ function handleFormSubmit(event) {
                 <h3 class="section-title" style="margin-top: 0.75rem;">Hasil Seleksi Masuk</h3>
                 <p style="font-size: 0.875rem; color: #4b5563; margin-bottom: 0.5rem;">Nama: <strong>${dataSiswa.nama}</strong></p>
                 <p style="font-size: 0.875rem; color: #4b5563; margin-bottom: 1.5rem;">Nomor Induk Mahasiswa: <strong>${regNumber}</strong></p>
-                
-                <!-- KOTAK INFORMASI + QR CODE LOKAL DI SAMPING -->
                 <div style="background-color: #f9fafb; padding: 1.25rem; border-radius: 0.75rem; max-width: 32rem; margin: 0 auto 1.5rem auto; font-size: 0.875rem; border: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; gap: 1rem; text-align: left;">
                     <div>
                         <p style="margin-bottom: 0.5rem;"><strong>Universitas:</strong> Universitas Peternakan Ikan Lele</p>
                         <p style="margin-bottom: 0.5rem;"><strong>Status:</strong> <span style="color: #059669; font-weight: bold;">Diterima Sebagai Mahasiswa Baru 2025</span></p>
                         <p style="font-size: 0.75rem; color: #6b7280; margin: 0;">Scan QR Code untuk membuka sertifikat kelulusan.</p>
                     </div>
-                    
-                    <!-- KOTAK GAMBAR QR CODE LOKAL -->
                     <div style="text-align: center; flex-shrink: 0; background: #ffffff; padding: 0.5rem; border-radius: 0.5rem; border: 1px solid #d1d5db;">
                         <img src="${qrUrl}" alt="Sertifikat Kelulusan" style="width: 100px; height: 100px; display: block;">
                     </div>
