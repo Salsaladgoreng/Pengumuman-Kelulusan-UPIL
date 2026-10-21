@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body.page-body {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f3f4f6;
+    color: #1f2937;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header */
+/* Header Container */
+.site-header {
+    background-color: #0f2c59;
+    color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+}
+
+.header-container {
+    max-width: 72rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.25rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Mencegah isi header turun ke bawah */
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: nowrap; /* Mencegah logo dan teks terpisah ke baris baru */
+}
+
+/* Pastikan ukuran gambar logo terkunci */
+.header-brand img {
+    width: 40px;
+    height: 40px;
+    min-width: 40px; /* Mencegah logo mengecil atau merusak layout */
+    object-fit: contain;
+}
+
+/* Card */
+.card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .card {
+        padding: 2rem;
+    }
+}
+
+.countdown-card {
+    text-align: center;
+}
+
+.card-bg-circle {
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    width: 8rem;
+    height: 8rem;
+    background-color: #eff6ff;
+    border-radius: 9999px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.badge-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #dbeafe;
+    color: #0f2c59;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+}
+
+.badge-pill i {
+    margin-right: 0.25rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f2c59;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 1.875rem;
+    }
+}
+
+/* Timer Grid */
+.timer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+    max-width: 32rem;
+    margin: 0 auto 1.5rem auto;
+}
+
+@media (min-width: 768px) {
+    .timer-grid {
+        gap: 1rem;
+    }
+}
+
+.timer-box {
+    background-color: #0f2c59;
+    color: #ffffff;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .timer-box {
+        padding: 1rem;
+    }
+}
+
+.timer-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+@media (min-width: 768px) {
+    .timer-number {
+        font-size: 2.25rem;
+    }
+}
+
+.timer-label {
+    font-size: 0.625rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+    .timer-label {
+        font-size: 0.75rem;
+    }
+}
+
+/* Status Banner */
+.status-banner {
+    background-color: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .status-banner {
+        font-size: 0.875rem;
+    }
+}
+
+.status-icon {
+    margin-right: 0.5rem;
+    color: #d97706;
+}
+
+/* Form Section */
+.form-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #0f2c59;
+    display: flex;
+    align-items: center;
+}
+
+.form-title-icon {
+    margin-right: 0.5rem;
+    color: #f59e0b;
+}
+
+.form-desc {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #374151;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    inset: 0 auto 0 0;
+    padding-left: 0.75rem;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: #9ca3af;
+}
+
+.form-input {
+    width: 100%;
+    padding-left: 2.5rem;
+    padding-right: 0.75rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    outline: none;
+    font-size: 0.875rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-input:focus {
+    border-color: #0f2c59;
+    box-shadow: 0 0 0 2px rgba(15, 44, 89, 0.2);
+    background-color: #ffffff;
+}
+
+/* Submit Button */
+.submit-button {
+    width: 100%;
+    background-color: #9ca3af;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: not-allowed;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:not(:disabled) {
+    background-color: #0f2c59;
+    cursor: pointer;
+}
+
+.submit-button i {
+    margin-right: 0.5rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Footer */
+.site-footer {
+    background-color: #0f2c59;
+    color: #ffffff;
+    padding: 1.5rem 0;
+    border-top: 1px solid #1e3a8a;
+    margin-top: 3rem;
+}
+
+.footer-container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #bfdbfe;
+}
+
+.footer-container p {
+    margin-top: 1rem;
+    font-size: 0.625rem;
+    color: #9ca3af;
+}

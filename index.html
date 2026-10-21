@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Hasil Seleksi Universitas Peternakan Ikan Lele</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="page-body">
+
+<header class="site-header">
+    <div class="header-container">
+        <div class="header-brand">
+            <img src="logo.png" alt="Logo Universitas">
+            <div>
+                <h1 class="brand-title">Universitas Peternakan Ikan Lele</h1>
+                <p class="brand-subtitle">Portal Resmi Pengumuman Hasil Seleksi</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <main class="main-content">
+
+        <!-- Section 1: Hero & Real-time Countdown Timer -->
+        <section id="countdown-section" class="card countdown-card">
+            <div class="card-bg-circle"></div>
+            
+            <span class="badge-pill">
+                <i class="fas fa-clock"></i> HITUNG MUNDUR PENGUMUMAN
+            </span>
+            <h2 class="section-title">Pengumuman Hasil Seleksi Universitas Peternakan Ikan Lele 2025</h2>
+
+            <!-- TIMER -->
+            <div class="timer-grid">
+                <div class="timer-box">
+                    <span id="days" class="timer-number">00</span>
+                    <span class="timer-label">Hari</span>
+                </div>
+                <div class="timer-box">
+                    <span id="hours" class="timer-number">00</span>
+                    <span class="timer-label">Jam</span>
+                </div>
+                <div class="timer-box">
+                    <span id="minutes" class="timer-number">00</span>
+                    <span class="timer-label">Menit</span>
+                </div>
+                <div class="timer-box">
+                    <span id="seconds" class="timer-number">00</span>
+                    <span class="timer-label">Detik</span>
+                </div>
+            </div>
+
+            <!-- Lock Banner Notification -->
+            <div id="countdown-status-banner" class="status-banner">
+                <span id="status-text">Hasil seleksi belum dibuka.</span>
+            </div>
+        </section>
+
+        <!-- Cek Kelulusan -->
+        <section id="form-section" class="card">
+            <div class="form-header">
+                <h3 class="form-title">
+                    <i class="fas fa-search form-title-icon"></i> Cek Hasil Kelulusan
+                </h3>
+                <p class="form-desc">Masukkan Nomor Induk Mahasiswa dan Tanggal Lahir sesuai dengan Formulir Pendaftaran Anda.</p>
+            </div>
+
+            <form id="check-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="reg-number" class="form-label">
+                            Nomor Induk Mahasiswa
+                        </label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <i class="fas fa-id-card"></i>
+                            </span>
+                            <input type="text" id="reg-number" required maxlength="9" placeholder="Contoh: 640141004" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birth-date" class="form-label">
+                            Tanggal Lahir
+                        </label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+                            <input type="date" id="birth-date" required class="form-input">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="submit-btn" class="submit-button">
+                    <i class="fas fa-search"></i> LIHAT HASIL SELEKSI
+                </button>
+            </form>
+        </section>
+
+        <section id="result-container" class="hidden">
+            <div class="result-card">
+                <h3 class="result-title">Hasil Seleksi</h3>
+                <p id="result-message" class="result-message"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>&copy; 2020 Universitas Peternakan Ikan Lele. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
