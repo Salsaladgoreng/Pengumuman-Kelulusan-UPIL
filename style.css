@@ -30,8 +30,8 @@ body.page-body {
 
 h1, h2 {
     color: #ffffff; 
-    margin-bottom: 8px;
-    letter-spacing: 0px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
 }
 
 .hidden {
@@ -155,7 +155,7 @@ h1, h2 {
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: #0f2c59;
     margin-bottom: 0.5rem;
@@ -176,19 +176,19 @@ h1, h2 {
 .timer-box {
     background-color: #0f2c59;
     color: #ffffff;
-    padding: 0.75rem;
+    padding: 0.75rem 0.3rem;
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .timer-number {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 900;
 }
 
 .timer-label {
-    font-size: 0.625rem;
+    font-size: 0.6rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     opacity: 0.8;
@@ -209,7 +209,6 @@ h1, h2 {
     margin-right: 0.5rem;
     color: #d97706;
 }
-
 
 .form-header {
     border-bottom: 1px solid #e5e7eb;
@@ -317,7 +316,7 @@ h1, h2 {
 }
 
 /* ==========================================
-   6. CHARACTER SLIDER & MEDIA (DENGAN LATAR BATIK)
+   6. CHARACTER SLIDER & MEDIA
    ========================================== */
 #tab-karakter {
     background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.92)), 
@@ -325,7 +324,7 @@ h1, h2 {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    padding: 20px;
+    padding: 15px;
     border-radius: 1rem;
     color: #ffffff;
 }
@@ -355,7 +354,7 @@ h1, h2 {
     position: relative;
     width: 100%;
     max-width: 600px;
-    height: 400px;
+    height: 300px;
     margin: 0 auto;
     border-radius: 8px;
     overflow: hidden;
@@ -381,9 +380,9 @@ h1, h2 {
     background-color: rgba(15, 23, 42, 0.8);
     color: #38bdf8;
     border: 2px solid #38bdf8;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    padding: 8px 14px;
+    padding: 6px 12px;
     cursor: pointer;
     border-radius: 50%;
     z-index: 10;
@@ -395,43 +394,67 @@ h1, h2 {
     color: #0f172a;
 }
 
-.prev-btn { left: 10px; }
-.next-btn { right: 10px; }
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; 
-    height: 0;
-    overflow: hidden;
-    border-radius: 8px;
-    border: 1px solid #1e3a8a;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
+.prev-btn { left: 5px; }
+.next-btn { right: 5px; }
 
 .story-box {
     background-color: rgba(30, 41, 59, 0.6);
     border-left: 5px solid #38bdf8;
-    padding: 20px;
+    padding: 15px;
     border-radius: 0 8px 8px 0;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     color: #cbd5e1;
     text-align: justify;
 }
 
+/* Kelas khusus untuk Kartu & Box Hasil (HP Friendly) */
+.result-detail-box {
+    background-color: rgba(255, 255, 255, 0.95); 
+    padding: 1.25rem; 
+    border-radius: 0.75rem; 
+    max-width: 32rem; 
+    margin: 0 auto 1.5rem auto; 
+    font-size: 0.875rem; 
+    border: 1px solid #e5e7eb; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 1rem; 
+    text-align: left;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.result-actions-wrapper {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 0.75rem; 
+    margin-bottom: 1.25rem;
+}
+
+.action-btn-hp {
+    width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ==========================================
+   7. FOOTER
+   ========================================== */
 .site-footer {
     background-color: #0f2c59;
     color: #ffffff;
     padding: 1.5rem 0;
     border-top: 1px solid #1e3a8a;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .footer-container {
@@ -441,12 +464,6 @@ h1, h2 {
     text-align: center;
     font-size: 0.75rem;
     color: #bfdbfe;
-}
-
-.footer-container p {
-    margin-top: 1rem;
-    font-size: 0.625rem;
-    color: #9ca3af;
 }
 
 @media (min-width: 768px) {
@@ -481,22 +498,71 @@ h1, h2 {
     .form-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .character-image-box {
+        height: 400px;
+    }
 }
 
 @media (max-width: 768px) {
+    body.page-body {
+        padding: 0;
+    }
+
     .header-container {
         flex-direction: column;
-        gap: 1rem;
-        text-align: center;
+        gap: 0.75rem;
+        padding: 1rem 0.75rem;
     }
+
+    .header-brand {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.25rem;
+    }
+
     .nav-menu {
         width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-tab-btn {
+        flex: 1;
+        justify-content: center;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.5rem;
+    }
+
+    .card {
+        padding: 1.25rem 1rem;
+        border-radius: 0.75rem;
+    }
+    .result-detail-box {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .result-actions-wrapper {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .action-btn-hp {
+        width: 100%;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .character-image-box {
-        height: 180px;
+        height: 220px;
+    }
+
+    .timer-number {
+        font-size: 1.1rem;
+    }
+    
+    .timer-label {
+        font-size: 0.55rem;
     }
 }
