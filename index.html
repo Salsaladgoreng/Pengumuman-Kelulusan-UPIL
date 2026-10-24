@@ -1,0 +1,302 @@
+<!-- JANGAN ADA YANG DIUBAH DISINI -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universitas Peternakan Ikan Lele</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-body">
+
+<header class="site-header">
+    <div class="header-container">
+        <div class="header-brand">
+            <img src="img/logo.png" alt="Logo Universitas">
+            <div class="brand-text">
+                <h1 class="brand-title">Universitas Peternakan Ikan Lele</h1>
+                <p class="brand-subtitle">Portal Resmi Pengumuman & Informasi Kampus</p>
+            </div>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="nav-menu" id="nav-menu">
+            <button onclick="switchTab('pendaftaran')" id="btn-tab-pendaftaran" class="nav-tab-btn">
+                <i class="fas fa-file"></i> Pendaftaran
+            </button>
+            <button onclick="switchTab('pengumuman')" id="btn-tab-pengumuman" class="nav-tab-btn active">
+                <i class="fas fa-bullhorn"></i> Pengumuman
+            </button>
+            <button onclick="switchTab('karakter')" id="btn-tab-karakter" class="nav-tab-btn">
+                <i class="fas fa-users"></i> Seputar Info
+            </button>
+        </nav>
+    </div>
+</header>
+
+<main class="main-content">
+
+    <div id="tab-pengumuman" class="tab-content">
+        <section id="countdown-section" class="card countdown-card">
+            <div class="card-bg-circle"></div>
+            <span class="badge-pill">
+                <i class="fas fa-clock"></i> HITUNG MUNDUR PENGUMUMAN
+            </span>
+            <h2 class="section-title">Pengumuman Hasil Seleksi Universitas Peternakan Ikan Lele 2025</h2>
+            <div class="timer-grid">
+                <div class="timer-box">
+                    <span id="days" class="timer-number">00</span>
+                    <span class="timer-label">Hari</span>
+                </div>
+                <div class="timer-box">
+                    <span id="hours" class="timer-number">00</span>
+                    <span class="timer-label">Jam</span>
+                </div>
+                <div class="timer-box">
+                    <span id="minutes" class="timer-number">00</span>
+                    <span class="timer-label">Menit</span>
+                </div>
+                <div class="timer-box">
+                    <span id="seconds" class="timer-number">00</span>
+                    <span class="timer-label">Detik</span>
+                </div>
+            </div>
+
+            <div id="countdown-status-banner" class="status-banner">
+                <span id="status-text">Hasil seleksi belum dibuka.</span>
+            </div>
+        </section>
+
+        <section id="form-section" class="card">
+            <div class="form-header">
+                <h3 class="form-title">
+                    <i class="fas fa-search form-title-icon"></i> Cek Hasil Kelulusan
+                </h3>
+                <p class="form-desc">Masukkan Nomor Induk Mahasiswa dan Tanggal Lahir sesuai dengan Formulir Pendaftaran Anda.</p>
+            </div>
+
+            <form id="check-form" onsubmit="handleFormSubmit(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="reg-number" class="form-label">Nomor Induk Mahasiswa</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon"><i class="fas fa-id-card"></i></span>
+                            <input type="text" id="reg-number" required maxlength="9" placeholder="Contoh NIM: 640141004" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birth-date" class="form-label">Tanggal Lahir</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon"><i class="fas fa-calendar-alt"></i></span>
+                            <input type="date" id="birth-date" required class="form-input">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="submit-btn" class="submit-button">
+                    <i class="fas fa-search"></i> LIHAT HASIL SELEKSI
+                </button>
+            </form>
+        </section>
+
+        <section id="result-container" class="hidden"></section>
+    </div>
+
+ <!-- TAB: SEPUTAR INFO -->
+<div id="tab-karakter" class="tab-content hidden">
+    <section class="card" style="max-width: 600px; margin: 0 auto 1.5rem auto;;">
+        <h2 class="section-title" style="margin-bottom: 1rem;">Story Summary</h2>
+        <div class="story-box">
+            <p>
+                Di dunia di mana blabla blabla
+            </p>
+        </div>
+    </section>
+    
+    <section class="card" style="max-width: 600px; margin: 0 auto 1.5rem auto; text-align: center;">
+        <h2 class="section-title" style="margin-bottom: 0.5rem;">Seputar UPIL</h2>
+        <p class="form-desc" style="margin-bottom: 1.25rem;">Ikuti Saluran Resmi dan Instagram Universitas Peternakan Ikan Lele untuk mendapatkan info terupdate!</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; max-width: 380px; margin: 0 auto;">
+            <a href="https://whatsapp.com/channel/0029VaaVZVy7oQhVj3Uoyz0q" target="_blank" class="action-btn-hp" style="background-color: #25d366; color: #ffffff; text-decoration: none; padding: 0.85rem; border-radius: 0.5rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Saluran WhatsApp UPIL
+            </a>
+            <a href="https://www.instagram.com/kampus.upil?dlrf=MW9rM2sxb2Y4MHI0bg==" class="action-btn-hp" style="background-color: #7721a9; color: #ffffff; text-decoration: none; padding: 0.85rem; border-radius: 0.5rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                <i class="fab fa-instagram" style="font-size: 1.1rem;"></i> Instagram @kampus.upil
+            </a>
+        </div>
+    </section>
+
+
+    <section class="card character-section" style="max-width: 600px; margin: 0 auto 1.5rem auto; text-align: center;">
+    <div style="max-width: 600px; margin: 1rem auto; text-align: center;">
+        <h1 style="font-size: 1.35rem; font-weight: 800; color: #fefefe; text-transform: uppercase; letter-spacing: 0.5px;">
+            Perkenalan Mahasiswa/i Universitas Peternakan Ikan Lele
+        </h1>
+    </div>
+        <h6 class="section-title" style="margin-bottom: 0.5rem;">Badan Eksekutif Mahasiswa (BEM)</h6>
+        <h4 style="font-size: 1rem; color: #38bdf8; margin-bottom: 0.75rem;">
+            Character (<span id="bem-current-slide">1</span> / 3)
+        </h4>
+        
+        <div class="slider-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <button type="button" class="nav-btn prev-btn" onclick="moveGroupSlide('bem', -1)">&#10094;</button>
+            
+            <div class="character-image-box" style="width: 100%; max-width: 500px; height: 320px; background-color: #0b0f19; border-radius: 8px; overflow: hidden; border: 2px solid #38bdf8; position: relative;">
+                <img class="bem-slide-img active" src="img/bem1.jpg" alt="BEM 1" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+                <img class="bem-slide-img" src="img/bem2.jpg" alt="BEM 2" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                <img class="bem-slide-img" src="img/bem3.jpg" alt="BEM 3" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <button type="button" class="nav-btn next-btn" onclick="moveGroupSlide('bem', 1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="card character-section" style="max-width: 600px; margin: 0 auto 1.5rem auto; text-align: center;">
+        <h4 class="section-title" style="margin-bottom: 0.5rem;">Asisten Badan Eksekutif Mahasiswa (ASBEM)</h4>
+        
+        <h4 style="font-size: 1rem; color: #38bdf8; margin-bottom: 0.75rem;">
+            Character (<span id="asbem-current-slide">1</span> / 3)
+        </h4>
+        
+        <div class="slider-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <button type="button" class="nav-btn prev-btn" onclick="moveGroupSlide('asbem', -1)">&#10094;</button>
+            
+            <div class="character-image-box" style="width: 100%; max-width: 500px; height: 320px; background-color: #0b0f19; border-radius: 8px; overflow: hidden; border: 2px solid #38bdf8; position: relative;">
+                <img class="asbem-slide-img active" src="img/asbem1.jpg" alt="ASBEM 1" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+                <img class="asbem-slide-img" src="img/asbem2.jpg" alt="ASBEM 2" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                <img class="asbem-slide-img" src="img/asbem3.jpg" alt="ASBEM 3" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <button type="button" class="nav-btn next-btn" onclick="moveGroupSlide('asbem', 1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="card character-section" style="max-width: 600px; margin: 0 auto 1.5rem auto; text-align: center;">
+        <h4 class="section-title" style="margin-bottom: 0.5rem;">Mahasiswa/i</h4>
+        <h4 style="font-size: 1rem; color: #38bdf8; margin-bottom: 0.75rem;">
+            Character (<span id="mahasiswa-current-slide">1</span> / 3)
+        </h4>
+        
+        <div class="slider-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <button type="button" class="nav-btn prev-btn" onclick="moveGroupSlide('mahasiswa', -1)">&#10094;</button>
+            
+            <div class="character-image-box" style="width: 100%; max-width: 500px; height: 320px; background-color: #0b0f19; border-radius: 8px; overflow: hidden; border: 2px solid #38bdf8; position: relative;">
+                <img class="mahasiswa-slide-img active" src="img/mhs1.jpg" alt="Mahasiswa 1" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+                <img class="mahasiswa-slide-img" src="img/mhs2.jpg" alt="Mahasiswa 2" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                <img class="mahasiswa-slide-img" src="img/mhs3.jpg" alt="Mahasiswa 3" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <button type="button" class="nav-btn next-btn" onclick="moveGroupSlide('mahasiswa', 1)">&#10095;</button>
+        </div>
+    </section>
+</div>
+
+<div id="tab-pendaftaran" class="tab-content hidden">
+    
+    <section class="card booklet-section" style="max-width: 600px; margin: 0 auto 1.5rem auto; text-align: center;">
+        <h2 class="section-title" style="margin-bottom: 0.5rem;">Booklet Pendaftaran PKKMB 2025</h2>
+        <p class="form-desc" style="margin-bottom: 1rem;">Geser untuk melihat panduan dan informasi lengkap pendaftaran.</p>
+        
+        <h3 class="section-title" style="font-size: 1.1rem; text-align: center; margin-bottom: 0.75rem; color: #38bdf8;">
+            Halaman (<span id="booklet-current-slide">1</span> / 3)
+        </h3>
+        <div class="slider-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <button type="button" class="nav-btn prev-btn" onclick="moveBookletSlide(-1)">&#10094;</button>
+            
+            <div class="character-image-box" style="width: 100%; max-width: 500px; height: 360px; background-color: #0b0f19; border-radius: 8px; overflow: hidden; border: 2px solid #38bdf8; position: relative;">
+                <img class="booklet-slide-img active" src="img/booklet1.jpg" alt="Booklet 1" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: contain;">
+                <img class="booklet-slide-img" src="img/booklet2.jpg" alt="Booklet 2" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: contain;">
+                <img class="booklet-slide-img" src="img/booklet3.jpg" alt="Booklet 3" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <button type="button" class="nav-btn next-btn" onclick="moveBookletSlide(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="card form-reg-section" style="max-width: 600px; margin: 0 auto 1.5rem auto; text-align: center;">
+        <h2 class="section-title" style="margin-bottom: 0.5rem;">Formulir Pendaftaran</h2>
+        <p class="form-desc" style="margin-bottom: 1.25rem;">Sudah membaca panduan booklet di atas? Silakan klik tombol untuk mengisi formulir pendaftaran.</p>
+        
+        <div>
+            <a href="https://forms.gle/masukkan-link-google-form-disini" target="_blank" class="action-btn-hp" style="background-color: #38bdf8; color: #0f172a; width: 100%; text-decoration: none; padding: 0.85rem; border-radius: 0.5rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+                <i class="fas fa-file-alt"></i> Isi Formulir Pendaftaran
+            </a>
+        </div>
+    </section>
+
+    <section class="card twibbon-section" style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h2 class="section-title" style="margin-bottom: 0.5rem;">Buat Twibbon Pendaftaran</h2>
+        <p class="form-desc" style="margin-bottom: 1.5rem;">Unggah fotomu, atur posisi, lalu salin caption untuk diunggah ke media sosial!</p>
+
+        <div id="twibbon-preview-container" style="position: relative; width: 320px; height: 400px; margin: 0 auto; background-color: #0b0f19; border-radius: 1rem; overflow: hidden; border: 2px dashed #38bdf8; display: flex; align-items: center; justify-content: center; cursor: grab; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+            <p id="twibbon-placeholder" style="color: #94a3b8; font-size: 0.85rem; padding: 1rem;">Belum ada foto yang diunggah</p>
+            <img id="uploaded-user-image" src="" alt="User Upload" style="position: absolute; display: none; width: 280px; height: 280px; object-fit: cover; cursor: move; user-select: none;" />
+            <img src="img/frame.png" alt="Twibbon Frame" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; object-fit: fill;" onerror="this.style.display='none'" />
+        </div>
+
+        <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem;">💡 Tips: Seret foto di dalam kotak untuk mengatur posisi.</p>
+
+        <div id="controls-wrapper" style="margin-top: 1.25rem; display: none; flex-direction: column; gap: 0.8rem; background: rgba(30, 41, 59, 0.7); padding: 1rem; border-radius: 0.75rem; border: 1px solid #38bdf8;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                <label for="zoom-range" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; min-width: 80px; text-align: left;"><i class="fas fa-search-plus"></i> Zoom</label>
+                <input type="range" id="zoom-range" min="0.5" max="3" step="0.05" value="1" style="flex: 1; accent-color: #38bdf8; cursor: pointer;">
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                <label for="rotate-range" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; min-width: 80px; text-align: left;"><i class="fas fa-undo"></i> Putar</label>
+                <input type="range" id="rotate-range" min="-180" max="180" step="1" value="0" style="flex: 1; accent-color: #38bdf8; cursor: pointer;">
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
+                <label for="posY-range" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; min-width: 80px; text-align: left;"><i class="fas fa-arrows-alt-v"></i> Naik/Turun</label>
+                <input type="range" id="posY-range" min="-150" max="150" step="1" value="0" style="flex: 1; accent-color: #38bdf8; cursor: pointer;">
+            </div>
+
+            <button type="button" id="reset-control-btn" style="align-self: flex-end; background: none; border: none; color: #38bdf8; cursor: pointer; font-size: 0.8rem; font-weight: bold;"><i class="fas fa-sync-alt"></i> Reset Transformasi</button>
+        </div>
+
+        <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; max-width: 320px; margin-left: auto; margin-right: auto;">
+            <input type="file" id="twibbon-file-input" accept="image/*" style="display: none;">
+            <button type="button" onclick="document.getElementById('twibbon-file-input').click()" class="action-btn-hp" style="background-color: #38bdf8; color: #0f172a; width: 100%;">
+                <i class="fas fa-upload" style="margin-right: 0.5rem;"></i> Pilih Foto
+            </button>
+            <button type="button" id="download-twibbon-btn" disabled class="action-btn-hp" style="background-color: #10b981; color: #ffffff; width: 100%; opacity: 0.5; cursor: not-allowed;">
+                <i class="fas fa-download" style="margin-right: 0.5rem;"></i> Unduh Twibbon
+            </button>
+        </div>
+        
+        <canvas id="twibbon-canvas" style="display: none;"></canvas>
+
+        <div style="margin-top: 2rem; border-top: 1px solid #334155; padding-top: 1.5rem; text-align: left;">
+            <h3 style="font-size: 1rem; font-weight: bold; color: #38bdf8; margin-bottom: 0.5rem;">
+                <i class="fas fa-align-left"></i> Caption Media Sosial
+            </h3>
+            <p style="font-size: 0.775rem; color: #94a3b8; margin-bottom: 0.75rem;">Sesuaikan data diri pada teks di bawah ini lalu klik tombol salin:</p>
+            
+            <textarea id="caption-textarea" rows="8" style="width: 100%; padding: 0.75rem; font-size: 0.85rem; border: 1px solid #334155; border-radius: 0.5rem; outline: none; resize: vertical; font-family: inherit; background-color: #0b0f19; color: #f8fafc;">
+[READY FOR PKKMB UPIL 2025] </textarea>
+
+            <button type="button" id="copy-caption-btn" class="action-btn-hp" style="margin-top: 0.5rem; background-color: #10b981; color: #ffffff; width: 100%;">
+                <i class="fas fa-copy" style="margin-right: 0.5rem;"></i> Salin Caption
+            </button>
+            <p id="copy-status" style="display: none; font-size: 0.75rem; color: #34d399; margin-top: 0.35rem; text-align: center; font-weight: 600;">✓ Caption berhasil disalin ke clipboard!</p>
+        </div>
+    </section>
+
+</div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>&copy; 2025 Universitas Peternakan Ikan Lele. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
