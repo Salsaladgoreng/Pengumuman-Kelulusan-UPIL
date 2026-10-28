@@ -315,27 +315,6 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-#tab-karakter {
-    background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.92)), 
-                url('batik.png') repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    padding: 15px;
-    border-radius: 1rem;
-    color: #ffffff;
-}
-
-#tab-karakter .card {
-    background-color: rgba(15, 23, 42, 0.85);
-    border: 1px solid #38bdf8;
-    color: #ffffff;
-}
-
-#tab-karakter .section-title {
-    color: #38bdf8;
-}
-
 .character-section {
     text-align: center;
 }
@@ -454,6 +433,208 @@ h1, h2, h3, h4, h5, h6 {
     color: #bfdbfe;
 }
 
+/* Card Umum */
+.card {
+    text-align: center;
+    border-radius: 1rem;
+    padding: 1.5rem 1rem;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Card untuk Status Error/Salah */
+.card-error {
+    border-top: 4px solid #f59e0b;
+}
+
+/* Card untuk Status Lulus */
+.card-lulus {
+    border-top: 5px solid #10b981;
+    background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), var(--bg-url);
+}
+
+/* Card untuk Status Tidak Lulus */
+.card-gagal {
+    border-top: 6px solid #ef4444;
+    box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.3);
+    background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), var(--bg-url);
+}
+
+/* Logo */
+.logo-img {
+    width: 75px;
+    height: auto;
+    margin-bottom: 0.75rem;
+}
+
+.logo-img-small {
+    width: 70px;
+    height: auto;
+    margin-bottom: 0.75rem;
+}
+
+/* Badge / Label Status */
+.badge-pill {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    font-weight: 800;
+    font-size: 0.8rem;
+}
+
+.badge-warning {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    font-size: 0.75rem;
+}
+
+.badge-danger {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Judul Section */
+.section-title {
+    margin-top: 0.75rem;
+    color: #1f2937;
+    font-weight: 800;
+}
+
+/* Teks & Detail */
+.text-desc {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 1.25rem;
+}
+
+.text-name {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 0.25rem;
+}
+
+.text-name strong, .text-nim strong {
+    color: #111827;
+}
+
+.text-nim {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-bottom: 1.25rem;
+}
+
+/* Result Detail Box */
+.result-detail-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #d1d5db;
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
+.result-detail-box p {
+    margin-bottom: 0.35rem;
+    color: #1f2937;
+    font-size: 0.85rem;
+}
+
+.qr-wrapper {
+    text-align: center;
+    flex-shrink: 0;
+    background: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    margin-left: 1rem;
+}
+
+.qr-img {
+    width: 90px;
+    height: 90px;
+    display: block;
+}
+
+/* Actions / Buttons */
+.result-actions-wrapper {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.action-btn-hp, .submit-button {
+    padding: 0.65rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: #0f2c59;
+    color: #ffffff;
+}
+
+.btn-whatsapp {
+    background-color: #25d366;
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background-color: #4b5563;
+    color: #ffffff;
+}
+
+/* Helpdesk Box */
+.helpdesk-box {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    max-width: 32rem;
+    margin: 0 auto;
+    font-size: 0.775rem;
+    color: #166534;
+    text-align: center;
+}
+
+.helpdesk-box a {
+    color: #15803d;
+    font-weight: bold;
+}
+
+/* Motivational Box (Gagal) */
+.motivational-box {
+    background-color: #fef2f2;
+    padding: 0.85rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    max-width: 28rem;
+    margin: 0 auto 1.25rem auto;
+    font-size: 0.825rem;
+    border: 1px solid #fecaca;
+}
+
+.motivational-box p {
+    color: #991b1b;
+    margin: 0;
+    font-weight: 500;
+}
+
 @media (min-width: 768px) {
     .card {
         padding: 2rem;
@@ -542,9 +723,9 @@ h1, h2, h3, h4, h5, h6 {
     100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
 }
 
-#tab-pendaftaran, #tab-karakter {
+#tab-pendaftaran {
     background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.92)), 
-                url('batik.png') repeat;
+                url('img/batik.png') repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -553,18 +734,18 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff;
 }
 
-#tab-pendaftaran .card, #tab-karakter .card {
+#tab-pendaftaran .card {
     background-color: rgba(15, 23, 42, 0.85);
     border: 1px solid #38bdf8;
     color: #ffffff;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-#tab-pendaftaran .section-title, #tab-karakter .section-title {
+#tab-pendaftaran .section-title {
     color: #38bdf8;
 }
 
-#tab-pendaftaran .form-desc, #tab-karakter .form-desc {
+#tab-pendaftaran .form-desc {
     color: #cbd5e1 !important;
 }
 
