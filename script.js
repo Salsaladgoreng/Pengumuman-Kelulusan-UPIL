@@ -20,10 +20,27 @@ fetch(apiUrl)
     console.error("Terjadi kesalahan koneksi:", error);
   });
 
-//UBAH TANGGAL SISA WAKTU DI SINI (Format: "Bulan Tanggal, Tahun Jam:Menit:Detik")
+// Setup format dd/mm/yyyy pada input tanggal lahir
+const birthDateInput = document.getElementById("birth-date");
+if (birthDateInput) {
+  birthDateInput.addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 8) value = value.substring(0, 8);
+    
+    if (value.length >= 5) {
+      e.target.value = value.substring(0, 2) + "/" + value.substring(2, 4) + "/" + value.substring(4);
+    } else if (value.length >= 3) {
+      e.target.value = value.substring(0, 2) + "/" + value.substring(2);
+    } else {
+      e.target.value = value;
+    }
+  });
+}
+
+// UBAH TANGGAL SISA WAKTU DI SINI (Format: "Bulan Tanggal, Tahun Jam:Menit:Detik")
 const targetDate = new Date("June 08, 2026 10:00:00").getTime();
 
-//JANGAN ADA YANG DIUBAH DISINI
+// JANGAN ADA YANG DIUBAH DISINI
 const countdownInterval = setInterval(function () {
   const now = new Date().getTime();
   const distance = targetDate - now;
@@ -75,9 +92,6 @@ const countdownInterval = setInterval(function () {
   }
 }, 1000);
 
-/* =========================================================
-   TWIBBON LOGIC
-   ========================================================= */
 const twibbonFileInput = document.getElementById("twibbon-file-input");
 const uploadedUserImg = document.getElementById("uploaded-user-image");
 const twibbonPlaceholder = document.getElementById("twibbon-placeholder");
@@ -99,13 +113,46 @@ let isDraggingImg = false;
 let startDragX = 0;
 let startDragY = 0;
 
+function compressImage(file, maxWidth, maxHeight, quality, callback) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const img = new Image();
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height) {
+        if (width > maxWidth) {
+          height = Math.round((height * maxWidth) / width);
+          width = maxWidth;
+        }
+      } else {
+        if (height > maxHeight) {
+          width = Math.round((width * maxHeight) / height);
+          height = maxHeight;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+
+      const compressedDataUrl = canvas.toDataURL("image/jpeg", quality);
+      callback(compressedDataUrl);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
 if (twibbonFileInput) {
   twibbonFileInput.addEventListener("change", function (e) {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        userImgSrc = event.target.result;
+      compressImage(file, 1000, 1000, 0.82, function (compressedBase64) {
+        userImgSrc = compressedBase64;
         uploadedUserImg.src = userImgSrc;
         uploadedUserImg.style.display = "block";
         twibbonPlaceholder.style.display = "none";
@@ -125,8 +172,7 @@ if (twibbonFileInput) {
         if (posYRange) posYRange.value = 0;
 
         applyImgTransform();
-      };
-      reader.readAsDataURL(file);
+      });
     }
   });
 }
@@ -235,7 +281,6 @@ if (downloadTwibbonBtn) {
 
     const ctx = canvas.getContext("2d");
 
-    // Resolusi Canvas output
     const canvasWidth = 1000;
     const canvasHeight = 1250;
 
@@ -255,7 +300,6 @@ if (downloadTwibbonBtn) {
       userImg.onload = () => {
         ctx.save();
 
-        // Skala konversi dari preview (320x400) ke Canvas (1000x1250)
         const scaleFactorX = canvasWidth / 320;
         const scaleFactorY = canvasHeight / 400;
 
@@ -266,7 +310,6 @@ if (downloadTwibbonBtn) {
         ctx.rotate((imgRotation * Math.PI) / 180);
         ctx.scale(imgScale, imgScale);
 
-        // Menghitung dimensi asli tanpa memaksa rasio 1:1
         const imgAspect = userImg.naturalWidth / userImg.naturalHeight;
         let drawWidth, drawHeight;
 
@@ -288,13 +331,11 @@ if (downloadTwibbonBtn) {
 
         ctx.restore();
 
-        // Gambar frame di atas foto
         ctx.drawImage(frameImg, 0, 0, canvasWidth, canvasHeight);
 
-        // Download Hasil
         const link = document.createElement("a");
         link.download = "Twibbon-PKKMB-UPIL-2025.jpg";
-        link.href = canvas.toDataURL("image/jpeg", 0.95);
+        link.href = canvas.toDataURL("image/jpeg", 0.92);
         link.click();
       };
       userImg.onerror = () => {
@@ -307,9 +348,7 @@ if (downloadTwibbonBtn) {
   });
 }
 
-/* =========================================================
-   CAPTION CUSTOMIZATION LOGIC
-   ========================================================= */
+
 const inputNama = document.getElementById("input-caption-nama");
 const inputProdi = document.getElementById("input-caption-prodi");
 const inputMotivasi = document.getElementById("input-caption-motivasi");
@@ -320,7 +359,7 @@ function updateCaptionText() {
   const prodi = inputProdi && inputProdi.value.trim() ? inputProdi.value.trim() : "[Nama Prodi Kamu]";
   const motivasi = inputMotivasi && inputMotivasi.value.trim() ? inputMotivasi.value.trim() : "[Pesan atau harapan kamu]";
 
-  captionTextarea.value = `[Testing] READY FOR PKKMB UPIL 2025]
+  captionTextarea.value = `[READY FOR PKKMB UPIL 2025]
 
 Halo semuanya! Saya ${nama} dari Program Studi ${prodi} siap mengikuti PKKMB Universitas Peternakan Ikan Lele 2025!
 
@@ -333,8 +372,6 @@ if (inputNama && inputProdi && inputMotivasi && captionTextarea) {
   inputNama.addEventListener("input", updateCaptionText);
   inputProdi.addEventListener("input", updateCaptionText);
   inputMotivasi.addEventListener("input", updateCaptionText);
-  
-  // Set nilai awal saat dimuat
   updateCaptionText();
 }
 
@@ -353,7 +390,7 @@ if (copyCaptionBtn && captionTextarea) {
           }, 3000);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         try {
           captionTextarea.select();
           document.execCommand("copy");
@@ -370,9 +407,6 @@ if (copyCaptionBtn && captionTextarea) {
   });
 }
 
-/* =========================================================
-   BOOKLET SLIDER
-   ========================================================= */
 let bookletSlideIndex = 0;
 
 function moveBookletSlide(direction) {
@@ -449,12 +483,20 @@ function handleFormSubmit(event) {
   event.preventDefault();
 
   const regNumber = document.getElementById("reg-number").value.trim();
-  const tanggalLahir = document.getElementById("birth-date").value.trim();
+  const rawDate = document.getElementById("birth-date").value.trim();
   const resultContainer = document.getElementById("result-container");
 
-  if (!regNumber || !tanggalLahir) {
+  if (!regNumber || !rawDate) {
     alert("Mohon masukkan NIM dan Tanggal Lahir Anda!");
     return;
+  }
+
+  let formattedDate = rawDate;
+  if (rawDate.includes("/")) {
+    const parts = rawDate.split("/");
+    if (parts.length === 3) {
+      formattedDate = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+    }
   }
 
   resultContainer.classList.remove("hidden");
@@ -469,7 +511,7 @@ function handleFormSubmit(event) {
   const kontakHelpdesk2 =
     "https://wa.me/6285865335055?text=Halo%20Kak%20Arya,%20saya (nama kamu)%20dengan NIM (nim kamu)%20mengalami%20kendala%20mengenai%20(isi keluhan).";
 
-  const fetchUrl = `${apiUrl}?nim=${encodeURIComponent(regNumber)}&tanggal_lahir=${encodeURIComponent(tanggalLahir)}`;
+  const fetchUrl = `${apiUrl}?nim=${encodeURIComponent(regNumber)}&tanggal_lahir=${encodeURIComponent(formattedDate)}`;
 
   fetch(fetchUrl)
     .then((response) => response.json())
