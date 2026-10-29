@@ -37,121 +37,122 @@
 
 <main class="main-content">
 
-    <div id="tab-pendaftaran" class="tab-content">
+    <div id="tab-pendaftaran" class="tab-content animated-tab">
         
-        <section class="card booklet-section" style="max-width: 600px; margin: 0 auto 1.5rem auto; text-align: center;">
-            <h2 class="section-title" style="margin-bottom: 0.5rem;">Booklet Pendaftaran PKKMB 2025</h2>
-            <p class="form-desc" style="margin-bottom: 1rem;">Lihat panduan dan informasi lengkap pendaftaran disini.</p>
-            
-            <h3 class="section-title" style="font-size: 1.1rem; text-align: center; margin-bottom: 0.75rem; color: #38bdf8;">
-                Halaman (<span id="booklet-current-slide">1</span> / 3)
-            </h3>
-            <div class="slider-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
-                <button type="button" class="nav-btn prev-btn" onclick="moveBookletSlide(-1)">&#10094;</button>
+        <div class="pendaftaran-grid">
+            <section class="card booklet-section">
+                <h2 class="section-title">Booklet Pendaftaran PKKMB 2025</h2>
+                <p class="form-desc">Lihat panduan dan informasi lengkap pendaftaran disini.</p>
                 
-                <div class="character-image-box" style="width: 100%; max-width: 500px; height: 360px; background-color: #0b0f19; border-radius: 8px; overflow: hidden; border: 2px solid #38bdf8; position: relative;">
-                    <img class="booklet-slide-img active" src="img/booklet1.jpg" alt="Booklet 1" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: contain;">
-                    <img class="booklet-slide-img" src="img/booklet1.jpg" alt="Booklet 2" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: contain;">
-                    <img class="booklet-slide-img" src="img/booklet1.jpg" alt="Booklet 3" loading="lazy" style="display: none; width: 100%; height: 100%; object-fit: contain;">
-                </div>
-
-                <button type="button" class="nav-btn next-btn" onclick="moveBookletSlide(1)">&#10095;</button>
-            </div>
-        </section>
-
-        <section class="card form-reg-section" style="max-width: 600px; margin: 0 auto 1.5rem auto; text-align: center;">
-            <h2 class="section-title" style="margin-bottom: 0.5rem;">Formulir Pendaftaran</h2>
-            <p class="form-desc" style="margin-bottom: 1.25rem;">Sudah membaca panduan booklet di atas? Silakan klik tombol untuk mengisi formulir pendaftaran.</p>
-            
-            <div>
-                <a href="https://forms.gle/masukkan-link-google-form-disini" target="_blank" class="action-btn-hp" style="background-color: #38bdf8; color: #0f172a; width: 100%; text-decoration: none; padding: 0.85rem; border-radius: 0.5rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
-                    <i class="fas fa-file-alt"></i> Isi Formulir Pendaftaran
-                </a>
-            </div>
-        </section>
-
-        <section class="card twibbon-section" style="max-width: 600px; margin: 0 auto; text-align: center;">
-            <h2 class="section-title" style="margin-bottom: 0.5rem;">Buat Twibbon Pendaftaran</h2>
-            <p class="form-desc" style="margin-bottom: 1.5rem;">Unggah fotomu, atur posisi, lalu salin caption untuk diunggah ke media sosial!</p>
-
-            <div id="twibbon-preview-container" style="position: relative; width: 320px; height: 400px; margin: 0 auto; background-color: #0b0f19; border-radius: 1rem; overflow: hidden; border: 2px dashed #38bdf8; display: flex; align-items: center; justify-content: center; cursor: grab; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-                <p id="twibbon-placeholder" style="color: #94a3b8; font-size: 0.85rem; padding: 1rem;">Belum ada foto yang diunggah</p>
-                <img id="uploaded-user-image" src="" alt="User Upload" style="position: absolute; display: none; max-width: 100%; max-height: 100%; object-fit: contain; cursor: move; user-select: none;" />
-                <img src="img/frame.png" alt="Twibbon Frame" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; object-fit: fill;" onerror="this.style.display='none'" />
-            </div>
-
-            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem;">💡 Tips: Seret foto di dalam kotak untuk mengatur posisi.</p>
-
-            <div id="controls-wrapper" style="margin-top: 1.25rem; display: none; flex-direction: column; gap: 0.8rem; background: rgba(30, 41, 59, 0.7); padding: 1rem; border-radius: 0.75rem; border: 1px solid #38bdf8;">
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
-                    <label for="zoom-range" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; min-width: 80px; text-align: left;"><i class="fas fa-search-plus"></i> Zoom</label>
-                    <input type="range" id="zoom-range" min="0.5" max="3" step="0.05" value="1" style="flex: 1; accent-color: #38bdf8; cursor: pointer;">
-                </div>
-
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
-                    <label for="rotate-range" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; min-width: 80px; text-align: left;"><i class="fas fa-undo"></i> Putar</label>
-                    <input type="range" id="rotate-range" min="-180" max="180" step="1" value="0" style="flex: 1; accent-color: #38bdf8; cursor: pointer;">
-                </div>
-
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
-                    <label for="posX-range" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; min-width: 80px; text-align: left;"><i class="fas fa-arrows-alt-h"></i> Kiri/Kanan</label>
-                    <input type="range" id="posX-range" min="-150" max="150" step="1" value="0" style="flex: 1; accent-color: #38bdf8; cursor: pointer;">
-                </div>
-
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
-                    <label for="posY-range" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; min-width: 80px; text-align: left;"><i class="fas fa-arrows-alt-v"></i> Naik/Turun</label>
-                    <input type="range" id="posY-range" min="-150" max="150" step="1" value="0" style="flex: 1; accent-color: #38bdf8; cursor: pointer;">
-                </div>
-
-                <button type="button" id="reset-control-btn" style="align-self: flex-end; background: none; border: none; color: #38bdf8; cursor: pointer; font-size: 0.8rem; font-weight: bold;"><i class="fas fa-sync-alt"></i> Reset Transformasi</button>
-            </div>
-
-            <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; max-width: 320px; margin-left: auto; margin-right: auto;">
-                <input type="file" id="twibbon-file-input" accept="image/*" style="display: none;">
-                <button type="button" onclick="document.getElementById('twibbon-file-input').click()" class="action-btn-hp" style="background-color: #38bdf8; color: #0f172a; width: 100%;">
-                    <i class="fas fa-upload" style="margin-right: 0.5rem;"></i> Pilih Foto
-                </button>
-                <button type="button" id="download-twibbon-btn" disabled class="action-btn-hp" style="background-color: #10b981; color: #ffffff; width: 100%; opacity: 0.5; cursor: not-allowed;">
-                    <i class="fas fa-download" style="margin-right: 0.5rem;"></i> Unduh Twibbon
-                </button>
-            </div>
-            
-            <canvas id="twibbon-canvas" style="display: none;"></canvas>
-
-            <div style="margin-top: 2rem; border-top: 1px solid #334155; padding-top: 1.5rem; text-align: left;">
-                <h3 style="font-size: 1rem; font-weight: bold; color: #38bdf8; margin-bottom: 0.5rem;">
-                    <i class="fas fa-align-left"></i> Caption Media Sosial
+                <h3 class="section-subtitle">
+                    Halaman (<span id="booklet-current-slide">1</span> / 3)
                 </h3>
-                <p style="font-size: 0.775rem; color: #94a3b8; margin-bottom: 0.75rem;">Isi formulir kustomisasi di bawah ini untuk melengkapi data pada caption:</p>
+                <div class="slider-wrapper">
+                    <button type="button" class="nav-btn prev-btn" onclick="moveBookletSlide(-1)">&#10094;</button>
+                    
+                    <div class="character-image-box booklet-image-box">
+                        <img class="booklet-slide-img active" src="img/booklet1.jpg" alt="Booklet 1" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet1.jpg" alt="Booklet 2" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet1.jpg" alt="Booklet 3" loading="lazy">
+                    </div>
+
+                    <button type="button" class="nav-btn next-btn" onclick="moveBookletSlide(1)">&#10095;</button>
+                </div>
+            </section>
+
+            <section class="card form-reg-section">
+                <h2 class="section-title">Formulir Pendaftaran</h2>
+                <p class="form-desc">Sudah membaca panduan booklet di atas? Silakan klik tombol untuk mengisi formulir pendaftaran.</p>
                 
-                <!-- Input Kustomisasi Caption -->
-                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem;">
-                    <div>
-                        <label for="input-caption-nama" style="font-size: 0.8rem; color: #38bdf8; font-weight: 600;">Nama Lengkap:</label>
-                        <input type="text" id="input-caption-nama" placeholder="Masukkan Nama Lengkap Anda" style="width: 100%; padding: 0.5rem; font-size: 0.85rem; border: 1px solid #334155; border-radius: 0.375rem; background-color: #0b0f19; color: #f8fafc; margin-top: 0.25rem;">
-                    </div>
-                    <div>
-                        <label for="input-caption-prodi" style="font-size: 0.8rem; color: #38bdf8; font-weight: 600;">Program Studi:</label>
-                        <input type="text" id="input-caption-prodi" placeholder="Masukkan Program Studi Anda" style="width: 100%; padding: 0.5rem; font-size: 0.85rem; border: 1px solid #334155; border-radius: 0.375rem; background-color: #0b0f19; color: #f8fafc; margin-top: 0.25rem;">
-                    </div>
-                    <div>
-                        <label for="input-caption-motivasi" style="font-size: 0.8rem; color: #38bdf8; font-weight: 600;">Pesan Kesan:</label>
-                        <textarea id="input-caption-motivasi" rows="2" placeholder="Masukkan pesan atau harapan Anda" style="width: 100%; padding: 0.5rem; font-size: 0.85rem; border: 1px solid #334155; border-radius: 0.375rem; background-color: #0b0f19; color: #f8fafc; margin-top: 0.25rem; resize: vertical;"></textarea>
-                    </div>
+                <div class="form-link-wrapper">
+                    <a href="https://forms.gle/masukkan-link-google-form-disini" target="_blank" class="action-btn-hp btn-form-link">
+                        <i class="fas fa-file-alt"></i> Isi Formulir Pendaftaran
+                    </a>
+                </div>
+            </section>
+
+            <section class="card twibbon-section">
+                <h2 class="section-title">Buat Twibbon Pendaftaran</h2>
+                <p class="form-desc">Unggah fotomu, atur posisi, lalu salin caption untuk diunggah ke media sosial!</p>
+
+                <div id="twibbon-preview-container" class="twibbon-preview-box">
+                    <p id="twibbon-placeholder">Belum ada foto yang diunggah</p>
+                    <img id="uploaded-user-image" src="" alt="User Upload" class="twibbon-user-img" />
+                    <img src="img/frame.png" alt="Twibbon Frame" class="twibbon-frame-img" onerror="this.style.display='none'" />
                 </div>
 
-                <textarea id="caption-textarea" readonly rows="8" style="width: 100%; padding: 0.75rem; font-size: 0.85rem; border: 1px solid #334155; border-radius: 0.5rem; outline: none; resize: vertical; font-family: inherit; background-color: #1e293b; color: #f8fafc; cursor: not-allowed;"></textarea>
+                <p class="twibbon-tip">💡 Tips: Seret foto di dalam kotak untuk mengatur posisi.</p>
 
-                <button type="button" id="copy-caption-btn" class="action-btn-hp" style="margin-top: 0.5rem; background-color: #10b981; color: #ffffff; width: 100%;">
-                    <i class="fas fa-copy" style="margin-right: 0.5rem;"></i> Salin Caption
-                </button>
-                <p id="copy-status" style="display: none; font-size: 0.75rem; color: #34d399; margin-top: 0.35rem; text-align: center; font-weight: 600;">✓ Caption berhasil disalin ke clipboard!</p>
-            </div>
-        </section>
+                <div id="controls-wrapper" class="controls-card">
+                    <div class="control-row">
+                        <label for="zoom-range"><i class="fas fa-search-plus"></i> Zoom</label>
+                        <input type="range" id="zoom-range" min="0.5" max="3" step="0.05" value="1">
+                    </div>
+
+                    <div class="control-row">
+                        <label for="rotate-range"><i class="fas fa-undo"></i> Putar</label>
+                        <input type="range" id="rotate-range" min="-180" max="180" step="1" value="0">
+                    </div>
+
+                    <div class="control-row">
+                        <label for="posX-range"><i class="fas fa-arrows-alt-h"></i> Kiri/Kanan</label>
+                        <input type="range" id="posX-range" min="-150" max="150" step="1" value="0">
+                    </div>
+
+                    <div class="control-row">
+                        <label for="posY-range"><i class="fas fa-arrows-alt-v"></i> Naik/Turun</label>
+                        <input type="range" id="posY-range" min="-150" max="150" step="1" value="0">
+                    </div>
+
+                    <button type="button" id="reset-control-btn"><i class="fas fa-sync-alt"></i> Reset Transformasi</button>
+                </div>
+
+                <div class="twibbon-actions">
+                    <input type="file" id="twibbon-file-input" accept="image/*" style="display: none;">
+                    <button type="button" onclick="document.getElementById('twibbon-file-input').click()" class="action-btn-hp btn-upload">
+                        <i class="fas fa-upload"></i> Pilih Foto
+                    </button>
+                    <button type="button" id="download-twibbon-btn" disabled class="action-btn-hp btn-download">
+                        <i class="fas fa-download"></i> Unduh Twibbon
+                    </button>
+                </div>
+                
+                <canvas id="twibbon-canvas" style="display: none;"></canvas>
+
+                <div class="caption-section">
+                    <h3 class="caption-title">
+                        <i class="fas fa-align-left"></i> Caption Media Sosial
+                    </h3>
+                    <p class="caption-sub">Isi formulir kustomisasi di bawah ini untuk melengkapi data pada caption:</p>
+                    
+                    <div class="caption-inputs">
+                        <div>
+                            <label for="input-caption-nama">Nama Lengkap:</label>
+                            <input type="text" id="input-caption-nama" placeholder="Masukkan Nama Lengkap Anda" class="caption-field">
+                        </div>
+                        <div>
+                            <label for="input-caption-prodi">Program Studi:</label>
+                            <input type="text" id="input-caption-prodi" placeholder="Masukkan Program Studi Anda" class="caption-field">
+                        </div>
+                        <div>
+                            <label for="input-caption-motivasi">Pesan Kesan:</label>
+                            <textarea id="input-caption-motivasi" rows="2" placeholder="Masukkan pesan atau harapan Anda" class="caption-field"></textarea>
+                        </div>
+                    </div>
+
+                    <textarea id="caption-textarea" readonly rows="8" class="caption-box"></textarea>
+
+                    <button type="button" id="copy-caption-btn" class="action-btn-hp btn-copy">
+                        <i class="fas fa-copy"></i> Salin Caption
+                    </button>
+                    <p id="copy-status" class="copy-success-text">✓ Caption berhasil disalin ke clipboard!</p>
+                </div>
+            </section>
+        </div>
 
     </div>
 
-    <div id="tab-pengumuman" class="tab-content hidden">
+    <div id="tab-pengumuman" class="tab-content hidden animated-tab">
         <section id="countdown-section" class="card countdown-card">
             <div class="card-bg-circle"></div>
             <span class="badge-pill">
@@ -182,7 +183,7 @@
             </div>
         </section>
 
-        <section id="form-section" class="card">
+        <section id="form-section" class="card form-search-card">
             <div class="form-header">
                 <h3 class="form-title">
                     <i class="fas fa-search form-title-icon"></i> Cek Hasil Kelulusan
@@ -201,10 +202,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="birth-date" class="form-label">Tanggal Lahir</label>
+                        <label for="birth-date" class="form-label">Tanggal Lahir (DD/MM/YYYY)</label>
                         <div class="input-wrapper">
                             <span class="input-icon"><i class="fas fa-calendar-alt"></i></span>
-                            <input type="date" id="birth-date" required class="form-input">
+                            <input type="text" id="birth-date" required placeholder="DD/MM/YYYY" maxlength="10" class="form-input">
                         </div>
                     </div>
                 </div>
@@ -220,7 +221,7 @@
     <template id="templateError">
         <div class="card card-error">
             <div><img src="" alt="Logo" class="logo-img-small js-logo"></div>
-            <span class="badge-pill badge-warning">DATA / PASSWORD SALAH</span>
+            <span class="badge-pill badge-warning">DATA TIDAK DITEMUKAN</span>
             <h3 class="section-title">Hasil Seleksi Universitas Peternakan Ikan Lele</h3>
             <p class="text-desc">NIM <strong class="js-nim"></strong> atau Tanggal Lahir tidak cocok dengan sistem. Periksa kembali data Anda.</p>
             <button onclick="location.reload()" class="submit-button btn-primary">Coba Lagi</button>
@@ -261,7 +262,6 @@
             </div>
         </div>
     </template>
-
 
     <template id="templateGagal">
         <div class="card card-gagal">
