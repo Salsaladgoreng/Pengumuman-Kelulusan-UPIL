@@ -92,6 +92,47 @@ const countdownInterval = setInterval(function () {
   }
 }, 1000);
 
+// UBAH TANGGAL SISA WAKTU PENDAFTARAN DI SINI (Format: "Bulan Tanggal, Tahun Jam:Menit:Detik")
+const targetRegDate = new Date("November 07, 2026 01:00:00").getTime();
+
+const regCountdownInterval = setInterval(function () {
+  const now = new Date().getTime();
+  const distance = targetRegDate - now;
+
+  const regDaysEl = document.getElementById("reg-days");
+  const regHoursEl = document.getElementById("reg-hours");
+  const regMinutesEl = document.getElementById("reg-minutes");
+  const regSecondsEl = document.getElementById("reg-seconds");
+  const regCountdownDisplay = document.getElementById("reg-countdown-display");
+  const regLinkWrapper = document.getElementById("reg-link-wrapper");
+  const regFormDesc = document.getElementById("reg-form-desc"); // Elemen deskripsi form
+
+  if (distance < 0) {
+    clearInterval(regCountdownInterval);
+    if (regDaysEl) regDaysEl.innerText = "00";
+    if (regHoursEl) regHoursEl.innerText = "00";
+    if (regMinutesEl) regMinutesEl.innerText = "00";
+    if (regSecondsEl) regSecondsEl.innerText = "00";
+    if (regCountdownDisplay) regCountdownDisplay.style.display = "none";
+    if (regLinkWrapper) regLinkWrapper.style.display = "block";
+    if (regFormDesc) {
+      regFormDesc.innerText = "Sudah membaca panduan booklet di atas? Pastikan anda sudah memposting twibbon ke instagram anda dan sudah menyalin Linknya. klik link ini untuk mendaftar";
+    }
+  } else {
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    if (regDaysEl) regDaysEl.innerText = String(days).padStart(2, "0");
+    if (regHoursEl) regHoursEl.innerText = String(hours).padStart(2, "0");
+    if (regMinutesEl) regMinutesEl.innerText = String(minutes).padStart(2, "0");
+    if (regSecondsEl) regSecondsEl.innerText = String(seconds).padStart(2, "0");
+
+    if (regLinkWrapper) regLinkWrapper.style.display = "none";
+  }
+}, 1000);
+
 const twibbonFileInput = document.getElementById("twibbon-file-input");
 const uploadedUserImg = document.getElementById("uploaded-user-image");
 const twibbonPlaceholder = document.getElementById("twibbon-placeholder");
