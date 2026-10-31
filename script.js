@@ -271,7 +271,6 @@ if (resetControlBtn) {
   });
 }
 
-/* Save / Download Twibbon Fix */
 if (downloadTwibbonBtn) {
   downloadTwibbonBtn.addEventListener("click", () => {
     if (!userImgSrc) return;
@@ -348,32 +347,42 @@ if (downloadTwibbonBtn) {
   });
 }
 
-
 const inputNama = document.getElementById("input-caption-nama");
+const inputnickname = document.getElementById("input-caption-nickname");
+const inputasal = document.getElementById("input-caption-asal");
 const inputProdi = document.getElementById("input-caption-prodi");
-const inputMotivasi = document.getElementById("input-caption-motivasi");
+const inputquote = document.getElementById("input-caption-quote");
 const captionTextarea = document.getElementById("caption-textarea");
 
 function updateCaptionText() {
   const nama = inputNama && inputNama.value.trim() ? inputNama.value.trim() : "[Nama Lengkap Kamu]";
+  const nickname = inputnickname && inputnickname.value.trim() ? inputnickname.value.trim() : "[Nama Panggilan]";
+  const asal = inputasal && inputasal.value.trim() ? inputasal.value.trim() : "[Asal SMA/SMK]";
   const prodi = inputProdi && inputProdi.value.trim() ? inputProdi.value.trim() : "[Nama Prodi Kamu]";
-  const motivasi = inputMotivasi && inputMotivasi.value.trim() ? inputMotivasi.value.trim() : "[Pesan atau harapan kamu]";
+  const quote = inputquote && inputquote.value.trim() ? inputquote.value.trim() : "QUOTE";
 
-  captionTextarea.value = `[READY FOR PKKMB UPIL 2025]
+  captionTextarea.value = `☀️Hallo perkenalkan, aku bagian dari keluarga besar Universitas Pertenakan Ikan Lele!
 
-Halo semuanya! Saya ${nama} dari Program Studi ${prodi} siap mengikuti PKKMB Universitas Peternakan Ikan Lele 2025!
+Dari berbagai daerah, latar belakang, dan impian kami dipertemukan di satu titik yaitu Universitas Pertenakan Ikan Lele.
 
-"${motivasi}"
+Perkenalkan Aku ${nama} di panggil ${nickname} dari ${asal}, mahasiswa baru program studi ${prodi} 2025
 
-#PKKMBUPIL2025 #UniversitasPeternakanIkanLele`;
+【"${quote}"】
+
+☀️ Manunggaling Kawula Gusti 🌑
+
+#PKKMBUPIL2025 #KAMPUSUPILART #COMMUNITYART #GCRPART`;
 }
 
-if (inputNama && inputProdi && inputMotivasi && captionTextarea) {
-  inputNama.addEventListener("input", updateCaptionText);
-  inputProdi.addEventListener("input", updateCaptionText);
-  inputMotivasi.addEventListener("input", updateCaptionText);
-  updateCaptionText();
-}
+[inputNama, inputnickname, inputasal, inputProdi, inputquote].forEach(
+  (input) => {
+    if (input) {
+      input.addEventListener("input", updateCaptionText);
+    }
+  }
+);
+
+updateCaptionText();
 
 const copyCaptionBtn = document.getElementById("copy-caption-btn");
 const copyStatus = document.getElementById("copy-status");
@@ -427,22 +436,6 @@ function moveBookletSlide(direction) {
   counter.textContent = bookletSlideIndex + 1;
 }
 
-function takeScreenshot() {
-  const targetElement = document.querySelector("#result-container .card");
-
-  if (!targetElement) return;
-
-  html2canvas(targetElement, {
-    scale: 2,
-    useCORS: true,
-  }).then((canvas) => {
-    const link = document.createElement("a");
-    link.download = "Bukti-Kelulusan.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  });
-}
-
 function switchTab(tabName) {
   const tabPengumuman = document.getElementById("tab-pengumuman");
   const tabPendaftaran = document.getElementById("tab-pendaftaran");
@@ -479,6 +472,141 @@ function toggleMobileMenu() {
   }
 }
 
+async function takeScreenshot() {
+  const targetElement = document.getElementById("result-container");
+  if (!targetElement || targetElement.classList.contains("hidden")) {
+    alert("Hasil seleksi belum tersedia.");
+    return;
+  }
+
+  if (targetElement.textContent.includes("Sedang mengecek data ke database")) {
+    alert("Tunggu sampai hasil seleksi selesai dimuat.");
+    return;
+  }
+
+  if (typeof html2canvas !== "function") {
+    alert("Fitur screenshot gagal dimuat. Silakan muat ulang halaman.");
+    return;
+  }
+
+  const screenshotClone = targetElement.cloneNode(true);
+  screenshotClone.removeAttribute("id");
+  screenshotClone.id = "screenshot-result-clone";
+  screenshotClone.querySelector(".result-actions-wrapper")?.remove();
+  screenshotClone.querySelectorAll("*").forEach((element) => {
+    if (
+      element.children.length === 0 &&
+      element.textContent.trim() === "Sedang mengecek data ke database..."
+    ) {
+      element.remove();
+    }
+  });
+
+  Object.assign(screenshotClone.style, {
+    position: "fixed",
+    left: "-10000px",
+    top: "0",
+    width: `${targetElement.getBoundingClientRect().width}px`,
+    height: "auto",
+    margin: "0",
+    transform: "none",
+    animation: "none",
+    overflow: "hidden"
+  });
+
+  document.body.appendChild(screenshotClone);
+
+  try {
+    const images = Array.from(screenshotClone.querySelectorAll("img"));
+
+    await Promise.all(
+      images.map((img) => {
+        if (img.complete) {
+          return Promise.resolve();
+        }
+
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      })
+    );
+
+    const canvas = await html2canvas(screenshotClone, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff",
+      logging: false,
+
+      onclone: (clonedDocument) => {
+        const clonedCard = clonedDocument.getElementById(
+          "screenshot-result-clone"
+        );
+
+        if (!clonedCard) return;
+
+        Object.assign(clonedCard.style, {
+          position: "relative",
+          overflow: "hidden",
+          isolation: "isolate",
+          animation: "none",
+          transform: "none"
+        });
+
+        const background = clonedCard.querySelector(".card-bg-layer");
+        const overlay = clonedCard.querySelector(".card-overlay-layer");
+
+        if (background) {
+          Object.assign(background.style, {
+            position: "absolute",
+            inset: "0",
+            zIndex: "0",
+            opacity: "0.50",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            pointerEvents: "none"
+          });
+        }
+
+        if (overlay) {
+          Object.assign(overlay.style, {
+            position: "absolute",
+            inset: "0",
+            zIndex: "1",
+            backgroundColor: "rgba(255, 255, 255, 0.72)",
+            pointerEvents: "none"
+          });
+        }
+
+        Array.from(clonedCard.children).forEach((child) => {
+          if (
+            !child.classList.contains("card-bg-layer") &&
+            !child.classList.contains("card-overlay-layer")
+          ) {
+            Object.assign(child.style, {
+              position: "relative",
+              zIndex: "2"
+            });
+          }
+        });
+
+        clonedCard.querySelector(".result-actions-wrapper")?.remove();
+      }
+    });
+
+    const link = document.createElement("a");
+    link.download = "Bukti-Kelulusan.jpeg";
+    link.href = canvas.toDataURL("image/jpeg", 0.92);
+    link.click();
+  } catch (error) {
+    console.error("Gagal melakukan screenshot:", error);
+    alert("Terjadi kesalahan saat mengunduh gambar.");
+  } finally {
+    screenshotClone.remove();
+  }
+}
+
 function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -499,68 +627,91 @@ function handleFormSubmit(event) {
     }
   }
 
-  resultContainer.classList.remove("hidden");
-  resultContainer.innerHTML = `<div class="card" style="text-align: center; padding: 2rem;"><p>Sedang mengecek data ke database...</p></div>`;
-
-  const logoUrl = "img/logo.png";
   const bgUrl = "img/background.jpg";
+  const logoUrl = "img/logo.png";
+
+  resultContainer.classList.remove("hidden");
+  resultContainer.className = "card animated-tab";
+  resultContainer.innerHTML = `
+    <div style="text-align: center; padding: 2rem;">
+      <img src="${logoUrl}" class="logo-img" alt="Logo">
+      <p style="font-weight: 600; color: #0f2c59; margin-top: 1rem;">Sedang mengecek data ke database...</p>
+    </div>
+  `;
 
   const linkGrupWA = "https://chat.whatsapp.com/EXAMPLE";
   const kontakHelpdesk =
-    "https://wa.me/6285811758818?text=Halo%20Kak%20Xyon,%20saya (nama kamu)%20dengan NIM (nim kamu)%20mengalami%20kendala%20mengenai%20(isi keluhan).";
+    "https://wa.me/6285811758818?text=Halo%20Kak%20Xyon,%20saya%20mengalami%20kendala.";
   const kontakHelpdesk2 =
-    "https://wa.me/6285865335055?text=Halo%20Kak%20Arya,%20saya (nama kamu)%20dengan NIM (nim kamu)%20mengalami%20kendala%20mengenai%20(isi keluhan).";
+    "https://wa.me/6285865335055?text=Halo%20Kak%20Arya,%20saya%20mengalami%20kendala.";
 
   const fetchUrl = `${apiUrl}?nim=${encodeURIComponent(regNumber)}&tanggal_lahir=${encodeURIComponent(formattedDate)}`;
 
   fetch(fetchUrl)
     .then((response) => response.json())
     .then((result) => {
-      if (result.status !== "success" || !result.data) {
-            const template = document.getElementById("templateError").content.cloneNode(true);
-            
-            template.querySelector(".js-logo").src = logoUrl;
-            template.querySelector(".js-nim").textContent = regNumber;
+      setTimeout(() => {
+        resultContainer.innerHTML = "";
 
-            resultContainer.appendChild(template);
-            resultContainer.scrollIntoView({ behavior: "smooth" });
-            return;
+        if (result.status !== "success" || !result.data) {
+          resultContainer.className = "card card-error animated-tab";
+          const template = document.getElementById("templateError").content.cloneNode(true);
+
+          template.querySelector(".js-logo").src = logoUrl;
+          template.querySelector(".js-nim").textContent = regNumber;
+
+          resultContainer.appendChild(template);
+          resultContainer.scrollIntoView({ behavior: "smooth" });
+          return;
         }
 
         const dataSiswa = result.data;
         const isLulus = parseInt(dataSiswa.lulus_engga) === 1;
 
+        const backgroundLayers = `
+          <div class="card-bg-layer" style="background-image: url('${bgUrl}');"></div>
+          <div class="card-overlay-layer"></div>
+        `;
+
         if (isLulus) {
-            resultContainer.style.setProperty('--bg-url', `url('${bgUrl}')`);
-            const template = document.getElementById("templateLulus").content.cloneNode(true);
+          resultContainer.className = "card card-lulus animated-tab";
+          const template = document.getElementById("templateLulus").content.cloneNode(true);
 
-            template.querySelector(".js-logo").src = logoUrl;
-            template.querySelector(".js-nama").textContent = dataSiswa.nama_mahasiswa;
-            template.querySelector(".js-nim").textContent = regNumber;
-            template.querySelector(".js-wa-link").href = linkGrupWA;
-            template.querySelector(".js-helpdesk-1").href = kontakHelpdesk;
-            template.querySelector(".js-helpdesk-2").href = kontakHelpdesk2;
+          template.querySelector(".js-logo").src = logoUrl;
+          template.querySelector(".js-nama").textContent = dataSiswa.nama_mahasiswa;
+          template.querySelector(".js-nim").textContent = regNumber;
+          template.querySelector(".js-wa-link").href = linkGrupWA;
+          template.querySelector(".js-helpdesk-1").href = kontakHelpdesk;
+          template.querySelector(".js-helpdesk-2").href = kontakHelpdesk2;
 
-            resultContainer.appendChild(template);
+          resultContainer.innerHTML = backgroundLayers;
+          resultContainer.appendChild(template);
 
-            if (typeof confetti === "function") {
-                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
-            }
-        } 
-        else {
-            resultContainer.style.setProperty('--bg-url', `url('${bgUrl}')`);
-            const template = document.getElementById("templateGagal").content.cloneNode(true);
+          if (typeof confetti === "function") {
+            confetti({
+              particleCount: 120,
+              spread: 80,
+              origin: { y: 0.6 }
+            });
+          }
+        } else {
+          resultContainer.className = "card card-gagal animated-tab";
+          const template = document.getElementById("templateGagal").content.cloneNode(true);
 
-            template.querySelector(".js-logo").src = logoUrl;
-            template.querySelector(".js-nama").textContent = dataSiswa.nama_mahasiswa;
-            template.querySelector(".js-nim").textContent = regNumber;
+          template.querySelector(".js-logo").src = logoUrl;
+          template.querySelector(".js-nama").textContent = dataSiswa.nama_mahasiswa;
+          template.querySelector(".js-nim").textContent = regNumber;
 
-            resultContainer.appendChild(template);
+          resultContainer.innerHTML = backgroundLayers;
+          resultContainer.appendChild(template);
         }
-    resultContainer.scrollIntoView({ behavior: "smooth" });
+
+        resultContainer.scrollIntoView({ behavior: "smooth" });
+      }, 1000);
     })
     .catch((error) => {
       console.error("Terjadi kesalahan koneksi:", error);
       alert("Gagal terhubung ke server database.");
+      resultContainer.classList.add("hidden");
     });
 }
