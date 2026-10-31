@@ -66,15 +66,18 @@
 
             <section class="card form-reg-section">
                 <h2 class="section-title">Formulir Pendaftaran</h2>
-                <p class="form-desc"> Sudah membaca panduan booklet di atas? Pastikan anda sudah memposting twibbon ke instagram anda dan sudah menyalin Linknya. Klik tombol untuk mengisi formulir pendaftaran.</p>
-                
-                <div class="form-link-wrapper">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhI_2q2Jg5ZJ-ZL7Uyt-VM-nyhMCZIrQCp7DCO6YEuhun5NQ/viewform?usp=dialog" target="_blank" class="action-btn-hp btn-form-link">
+                <p class="form-desc" id="reg-form-desc">Pendaftaran belum dibuka.</p>
+
+                <div id="reg-countdown-display" class="reg-countdown-text">
+                    (<span id="reg-days">00</span>:<span id="reg-hours">00</span>:<span id="reg-minutes">00</span>:<span id="reg-seconds">00</span>)
+                </div>
+
+                <div class="form-link-wrapper" id="reg-link-wrapper" style="display: none;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhI_2q2Jg5ZJ-ZL7Uyt-VM-nyhMCZIrQCp7DCO6YEuhun5NQ/viewform?usp=dialog" target="_blank" id="reg-submit-btn" class="action-btn-hp btn-form-link">
                         <i class="fas fa-file-alt"></i> Isi Formulir Pendaftaran
                     </a>
                 </div>
             </section>
-
             <section class="card twibbon-section">
                 <h2 class="section-title">Buat Twibbon Pendaftaran</h2>
                 <p class="form-desc">Unggah fotomu, atur posisi, lalu salin caption untuk diunggah ke Instagram!</p>
