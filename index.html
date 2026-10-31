@@ -1,4 +1,3 @@
-<!-- JANGAN ADA YANG DIUBAH DISINI -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -45,15 +44,20 @@
                 <p class="form-desc">Lihat panduan dan informasi lengkap pendaftaran disini.</p>
                 
                 <h3 class="section-subtitle">
-                    Halaman (<span id="booklet-current-slide">1</span> / 3)
+                    Halaman (<span id="booklet-current-slide">1</span> / <span id="booklet-total-slides">8</span>)
                 </h3>
                 <div class="slider-wrapper">
                     <button type="button" class="nav-btn prev-btn" onclick="moveBookletSlide(-1)">&#10094;</button>
                     
                     <div class="character-image-box booklet-image-box">
                         <img class="booklet-slide-img active" src="img/booklet1.jpg" alt="Booklet 1" loading="lazy">
-                        <img class="booklet-slide-img" src="img/booklet1.jpg" alt="Booklet 2" loading="lazy">
-                        <img class="booklet-slide-img" src="img/booklet1.jpg" alt="Booklet 3" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet2.jpg" alt="Booklet 2" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet3.jpg" alt="Booklet 3" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet4.jpg" alt="Booklet 1" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet5.jpg" alt="Booklet 2" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet6.jpg" alt="Booklet 3" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet7.jpg" alt="Booklet 2" loading="lazy">
+                        <img class="booklet-slide-img" src="img/booklet8.jpg" alt="Booklet 3" loading="lazy">
                     </div>
 
                     <button type="button" class="nav-btn next-btn" onclick="moveBookletSlide(1)">&#10095;</button>
@@ -62,10 +66,10 @@
 
             <section class="card form-reg-section">
                 <h2 class="section-title">Formulir Pendaftaran</h2>
-                <p class="form-desc">Sudah membaca panduan booklet di atas? Silakan klik tombol untuk mengisi formulir pendaftaran.</p>
+                <p class="form-desc"> Sudah membaca panduan booklet di atas? Pastikan anda sudah memposting twibbon ke instagram anda dan sudah menyalin Linknya. Klik tombol untuk mengisi formulir pendaftaran.</p>
                 
                 <div class="form-link-wrapper">
-                    <a href="https://forms.gle/masukkan-link-google-form-disini" target="_blank" class="action-btn-hp btn-form-link">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhI_2q2Jg5ZJ-ZL7Uyt-VM-nyhMCZIrQCp7DCO6YEuhun5NQ/viewform?usp=dialog" target="_blank" class="action-btn-hp btn-form-link">
                         <i class="fas fa-file-alt"></i> Isi Formulir Pendaftaran
                     </a>
                 </div>
@@ -73,7 +77,7 @@
 
             <section class="card twibbon-section">
                 <h2 class="section-title">Buat Twibbon Pendaftaran</h2>
-                <p class="form-desc">Unggah fotomu, atur posisi, lalu salin caption untuk diunggah ke media sosial!</p>
+                <p class="form-desc">Unggah fotomu, atur posisi, lalu salin caption untuk diunggah ke Instagram!</p>
 
                 <div id="twibbon-preview-container" class="twibbon-preview-box">
                     <p id="twibbon-placeholder">Belum ada foto yang diunggah</p>
@@ -131,15 +135,23 @@
                             <input type="text" id="input-caption-nama" placeholder="Masukkan Nama Lengkap Anda" class="caption-field">
                         </div>
                         <div>
+                            <label for="input-caption-nickname">Nama Panggilan:</label>
+                            <input type="text" id="input-caption-nickname" placeholder="Masukkan Nama Panggilan Anda" class="caption-field">
+                        </div>
+                        <div>
+                            <label for="input-caption-prodi">Asal SMA/SMK:</label>
+                            <input type="text" id="input-caption-asal" placeholder="Masukkan Asal SMA/SMK Anda" class="caption-field">
+                        </div>
+                        <div>
+                        <div>
                             <label for="input-caption-prodi">Program Studi:</label>
                             <input type="text" id="input-caption-prodi" placeholder="Masukkan Program Studi Anda" class="caption-field">
                         </div>
                         <div>
-                            <label for="input-caption-motivasi">Pesan Kesan:</label>
-                            <textarea id="input-caption-motivasi" rows="2" placeholder="Masukkan pesan atau harapan Anda" class="caption-field"></textarea>
+                            <label for="input-caption-quote">Quote:</label>
+                            <input type="text" id="input-caption-quote" placeholder="Masukkan Quote Anda" class="caption-field">
                         </div>
                     </div>
-
                     <textarea id="caption-textarea" readonly rows="8" class="caption-box"></textarea>
 
                     <button type="button" id="copy-caption-btn" class="action-btn-hp btn-copy">
@@ -210,7 +222,7 @@
                     </div>
                 </div>
                 <button type="submit" id="submit-btn" class="submit-button">
-                    <i class="fas fa-search"></i> LIHAT HASIL SELEKSI
+                  <span> <i class="fas fa-search"></i> LIHAT HASIL SELEKSI </span>
                 </button>
             </form>
         </section>
@@ -218,68 +230,64 @@
         <section id="result-container" class="hidden"></section>
     </div>
 
-    <template id="templateError">
-        <div class="card card-error">
-            <div><img src="" alt="Logo" class="logo-img-small js-logo"></div>
-            <span class="badge-pill badge-warning">DATA TIDAK DITEMUKAN</span>
-            <h3 class="section-title">Hasil Seleksi Universitas Peternakan Ikan Lele</h3>
-            <p class="text-desc">NIM <strong class="js-nim"></strong> atau Tanggal Lahir tidak cocok dengan sistem. Periksa kembali data Anda.</p>
-            <button onclick="location.reload()" class="submit-button btn-primary">Coba Lagi</button>
-        </div>
+<template id="templateError">
+        <div><img src="" alt="Logo" class="logo-img-small js-logo"></div>
+        <span class="badge-pill badge-warning">DATA TIDAK DITEMUKAN</span>
+        <p class="text-desc">NIM <strong class="js-nim"></strong> atau Tanggal Lahir tidak terdaftar. Periksa kembali NIM dan Tanggal Lahir Anda.</p>
+        <p>   </p>
+        <button onclick="location.reload()" class="submit-button btn-primary">Coba Lagi</button>
     </template>
 
     <template id="templateLulus">
-        <div class="card card-lulus">
-            <div><img src="" alt="Logo" class="logo-img js-logo"></div>
-            <span class="badge-pill badge-success">SELAMAT! ANDA DINYATAKAN LULUS</span>
-            <h3 class="section-title">Hasil Seleksi Universitas Peternakan Ikan Lele</h3>
-            
-            <p class="text-name">Nama: <strong class="js-nama"></strong></p>
-            <p class="text-nim">Nomor Induk Mahasiswa: <strong class="js-nim"></strong></p>
-            
-            <div class="result-detail-box">
-                <div>
-                    <p><strong>Universitas:</strong> Universitas Peternakan Ikan Lele</p>
-                    <p><strong>Status:</strong> <span class="text-success-bold">Diterima Sebagai Mahasiswa Baru</span></p>
-                    <p class="qr-hint">Scan QR Code untuk membuka sertifikat kelulusan.</p>
-                </div>
-                <div class="qr-wrapper">
-                    <img src="img/qr.png" alt="Sertifikat" class="qr-img">
-                </div>
+        <div><img src="" alt="Logo" class="logo-img js-logo"></div>
+        <span class="badge-pill badge-success">SELAMAT! ANDA DINYATAKAN LULUS</span>
+        <h3 class="section-title">Hasil Seleksi Universitas Peternakan Ikan Lele</h3>
+        
+        <p class="text-name">Nama: <strong class="js-nama"></strong></p>
+        <p class="text-nim">Nomor Induk Mahasiswa: <strong class="js-nim"></strong></p>
+        
+        <div class="result-detail-box">
+            <div>
+                <p><strong>Universitas:</strong> Universitas Peternakan Ikan Lele</p>
+                <p>
+                    <strong>Status:</strong>
+                    <span class="text-success-bold">Diterima Sebagai Mahasiswa Baru</span>
+                </p>
+                <p class="qr-hint">Scan QR Code untuk masuk ke grup OSPEK.</p>
             </div>
+            <div class="qr-wrapper">
+                <img src="img/qr.png" alt="Sertifikat" class="qr-img">
+            </div>
+        </div>
 
-            <div class="result-actions-wrapper">
-                <button onclick="takeScreenshot()" class="action-btn-hp btn-primary">
-                    <i class="fas fa-camera"></i> Screenshot
-                </button>
-                <a href="#" target="_blank" class="action-btn-hp btn-whatsapp js-wa-link">
-                    <i class="fab fa-whatsapp"></i> Join Grup WhatsApp
-                </a>
-            </div>
+        <div class="result-actions-wrapper">
+            <button onclick="takeScreenshot()" class="action-btn-hp btn-primary">
+                <i class="fas fa-camera"></i> Screenshot
+            </button>
+            <a href="#" target="_blank" class="action-btn-hp btn-whatsapp js-wa-link">
+                <i class="fab fa-whatsapp"></i> Join Grup OSPEK
+            </a>
+        </div>
 
-            <div class="helpdesk-box">
-                <i class="fas fa-headset"></i> Kendala? Hubungi <a href="#" target="_blank" class="js-helpdesk-1">Helpdesk 1</a> atau <a href="#" target="_blank" class="js-helpdesk-2">Helpdesk 2</a>
-            </div>
+        <div class="helpdesk-box">
+            <i class="fas fa-headset"></i> Kendala? Hubungi <a href="#" target="_blank" class="js-helpdesk-1">Kak Xyon</a> atau <a href="#" target="_blank" class="js-helpdesk-2">Kak Arya</a>
         </div>
     </template>
 
     <template id="templateGagal">
-        <div class="card card-gagal">
-            <div><img src="" alt="Logo" class="logo-img js-logo"></div>
-            <span class="badge-pill badge-danger">MOHON MAAF, ANDA BELUM LULUS</span>
-
-            <h3 class="section-title">Hasil Seleksi Universitas Peternakan Ikan Lele</h3>
-            <p class="text-name">Nama: <strong class="js-nama"></strong></p>
-            <p class="text-nim">Nomor Induk Mahasiswa: <strong class="js-nim"></strong></p>
-            
-            <div class="motivational-box">
-                <p>Tetap semangat dan jangan putus asa! Sampai Jumpa di Season Berikutnya.</p>
-            </div>
-            
-            <button onclick="location.reload()" class="submit-button btn-secondary">Muat Ulang Halaman</button>
+        <div><img src="" alt="Logo" class="logo-img js-logo"></div>
+        <h3 class="section-title">Hasil Seleksi Universitas Peternakan Ikan Lele</h3>
+        <span class="badge-pill badge-danger">MOHON MAAF, ANDA DINYATAKAN TIDAK LULUS SELEKSI UNIVERSITAS PERTERNAKAN IKAN LELE 2025</span>
+        <p>  </p>
+        <p class="text-name">Nama: <strong class="js-nama"></strong></p>
+        <p class="text-nim">Nomor Induk Mahasiswa: <strong class="js-nim"></strong></p>
+        <p class="text-nim">  <strong class="js-nim"></strong></p>
+        <div class="motivational-box">
+            <p>Tetap semangat dan jangan putus asa! Sampai Jumpa di Season Berikutnya.</p>
         </div>
+        
+        <button onclick="location.reload()" class="submit-button btn-secondary">Muat Ulang Halaman</button>
     </template>
-
 </main>
 
 <footer class="site-footer">
